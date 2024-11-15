@@ -1,0 +1,47 @@
+/*
+To switch between configurations:
+1. Comment out the configuration you don’t want to use.
+2. Uncomment the desired configuration.
+For example, if you want to use the "Docker in Docker" setup, comment out the "Existing Dockerfile" section and uncomment the "Docker in Docker" section.
+*/
+
+// Uncomment this section to use the "Existing Dockerfile" configuration.
+/*
+{
+	"name": "Existing Dockerfile",
+	"build": {
+		"context": "..", // Set the build context to the parent directory where the Dockerfile is located.
+		"dockerfile": "../Dockerfile" // Specify the path to the Dockerfile relative to the .devcontainer folder.
+	},
+    "forwardPorts": [6006], // Forward port 6006 for TensorBoard access.
+    "containerEnv": { // Environment variables for hyperparameters used in training.
+        "LEARNING_RATE": "4e-05",
+        "BATCH_SIZE": "32",
+        "WEIGHT_DECAY": "0.1",
+        "WARMUP_STEPS": "50",
+        "DROPOUT_RATE": "0.6"
+    },
+    "postStartCommand": "python /app/train.py --learning_rate $LEARNING_RATE --batch_size $BATCH_SIZE --weight_decay $WEIGHT_DECAY --warmup_steps $WARMUP_STEPS --dropout_rate $DROPOUT_RATE"
+    // Automatically starts the training script with the specified hyperparameters after the container starts.
+}
+*/
+
+// Uncomment this section to use the "Docker in Docker" configuration.
+{
+	"name": "Docker in Docker",
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "20.10", // Install Docker version 20.10 inside the container.
+			"enableNonRootDocker": "true", // Allow non-root users to run Docker commands.
+			"moby": "true" // Install Docker CLI and Moby engine for container operations.
+		},
+		"ghcr.io/devcontainers/features/python:1": {} // Adds Python support to the container.
+	},
+	"forwardPorts": [6006], // Forward port 6006 for TensorBoard.
+	"postCreateCommand": "mkdir -p $(pwd)/tb_logs && docker build -t my_training_image . && pip install tensorboard"
+	// After the container is created, this command:
+	// 1. Creates the TensorBoard logs directory inside the container.
+	// 2. Builds the Docker image with the name "my_training_image".
+	// 3. Installs TensorBoard for monitoring training logs.
+}
