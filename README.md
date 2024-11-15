@@ -50,20 +50,20 @@ python src/train.py --learning_rate 1e-04 --batch_size 64 --weight_decay 0.05 --
 
 If you prefer to containerize the project:
 
-###	1.	Build the Docker image:
+###	2.1	Build the Docker image:
 
 ```bash
    docker build -t training_image .
 ```
 
 
-###	2.	Run the Docker container with default hyperparameters:
+###	2.2	Run the Docker container with default hyperparameters:
 
 ```bash
    docker run training_image
 ```
 
-###	3.	Optionally, override hyperparameters using environment variables:
+###	2.3	Optionally, override hyperparameters using environment variables:
 The configurable hyperparameters are the same mentioned in the section 1.2
 ```bash
    docker run -e LEARNING_RATE=3e-05 -e BATCH_SIZE=64 training_image
