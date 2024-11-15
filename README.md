@@ -11,7 +11,7 @@ Prerequisites
 You can download the following project using the command:
 
 ```bash
-   git clone git@github.com:Ceredavide/MLOPS.git
+   git clone https://github.com/Ceredavide/MLOPS.git
 ```
 
 # Running the Project
