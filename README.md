@@ -11,7 +11,7 @@ Prerequisites
 You can download the following project using the command:
 
 ```bash
-   git@github.com:Ceredavide/MLOPS.git
+   git clone git@github.com:Ceredavide/MLOPS.git
 ```
 
 # Running the Project
@@ -64,6 +64,7 @@ If you prefer to containerize the project:
 ```
 
 ###	3.	Optionally, override hyperparameters using environment variables:
+The configurable hyperparameters are the same mentioned in the section 1.2
 ```bash
    docker run -e LEARNING_RATE=3e-05 -e BATCH_SIZE=64 training_image
 ```
