@@ -6,7 +6,7 @@ For example, if you want to use the "Docker in Docker" setup, comment out the "E
 */
 
 // Uncomment this section to use the "Existing Dockerfile" configuration.
-/*
+
 {
 	"name": "Existing Dockerfile",
 	"build": {
@@ -24,9 +24,10 @@ For example, if you want to use the "Docker in Docker" setup, comment out the "E
     "postStartCommand": "python /app/train.py --learning_rate $LEARNING_RATE --batch_size $BATCH_SIZE --weight_decay $WEIGHT_DECAY --warmup_steps $WARMUP_STEPS --dropout_rate $DROPOUT_RATE"
     // Automatically starts the training script with the specified hyperparameters after the container starts.
 }
-*/
+
 
 // Uncomment this section to use the "Docker in Docker" configuration.
+/*
 {
 	"name": "Docker in Docker",
 	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
@@ -45,3 +46,4 @@ For example, if you want to use the "Docker in Docker" setup, comment out the "E
 	// 2. Builds the Docker image with the name "my_training_image".
 	// 3. Installs TensorBoard for monitoring training logs.
 }
+*/
