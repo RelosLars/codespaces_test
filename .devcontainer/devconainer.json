@@ -2,11 +2,11 @@
 {
 	"name": "Existing Dockerfile",
 	"build": {
-		"context": "..", // Set the build context to the parent directory where the Dockerfile is located.
-		"dockerfile": "../Dockerfile" // Specify the path to the Dockerfile relative to the .devcontainer folder.
+		"context": "..", 
+		"dockerfile": "../Dockerfile"
 	},
-    "forwardPorts": [6006], // Forward port 6006 for TensorBoard access.
-    "containerEnv": { // Environment variables for hyperparameters used in training.
+    "forwardPorts": [6006], 
+    "containerEnv": { 
         "LEARNING_RATE": "4e-05",
         "BATCH_SIZE": "32",
         "WEIGHT_DECAY": "0.1",
@@ -14,5 +14,4 @@
         "DROPOUT_RATE": "0.6"
     },
     "postStartCommand": "python /app/train.py --learning_rate $LEARNING_RATE --batch_size $BATCH_SIZE --weight_decay $WEIGHT_DECAY --warmup_steps $WARMUP_STEPS --dropout_rate $DROPOUT_RATE"
-    // Automatically starts the training script with the specified hyperparameters after the container starts.
 }
